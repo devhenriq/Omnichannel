@@ -1,0 +1,68 @@
+version: '3.4'
+
+networks:
+  cloud-network:
+    driver: bridge
+
+services:
+  person.api:
+    image: ${DOCKER_REGISTRY-}personapi
+    depends_on:
+      - omnichannel-rabbitmq
+    build:
+      context: .
+      dockerfile: Person.Api/Dockerfile
+    ports:
+      - "8000:80"
+      - "8001:443"
+    networks:
+      - cloud-network
+
+  customer.api:
+    image: ${DOCKER_REGISTRY-}customerapi
+    depends_on:
+      - omnichannel-rabbitmq
+    build:
+      context: .
+      dockerfile: Customer.Api/Dockerfile
+    ports:
+      - "8010:80"
+      - "8011:443"
+    networks:
+      - cloud-network
+
+
+  company.api:
+    image: ${DOCKER_REGISTRY-}companyapi
+    depends_on:
+      - omnichannel-rabbitmq
+    build:
+      context: .
+      dockerfile: Company.Api/Dockerfile
+    ports:
+      - "8020:80"
+      - "8021:443"
+    networks:
+      - cloud-network
+
+  omnichannel-rabbitmq:
+    image: rabbitmq:3-management
+    hostname: rabbitmq
+    container_name: omnichannel-rabbitmq
+    ports:
+      - "15672:15672"
+      - "8200:5672"
+      - "25676:25676"
+    environment:
+      RABBITMQ_DEFAULT_USER: root
+      RABBITMQ_DEFAULT_PASS: root
+    networks:
+      - "cloud-network"
+
+  omnichannel-redis:
+    image: redis
+    command: redis-server --requirepass Root@
+    ports:
+      - "6379:6379"
+    networks:
+      - "cloud-network"

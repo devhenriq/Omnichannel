@@ -1,0 +1,16 @@
+1. A solução deve ser disponibilizada em Cloud ou On-premise? 
+	Como a aplicação precisa ser escalável, o melhor cenário para ter um custo baseado na sua carga seria a opção de Cloud, pois a mesma disponibiliza uma estrutura de auto-scaling que se adapta a sua demanda, ou seja, se precisar de mais escala, automaticamente a infraestrutura pode se adaptar, diferente do on-premise que tem um limite de recursos a disposição e que caso precise de mais pode vir a demorar mais que o negócio demanda.
+
+2. Considerando a participação de 4 pessoas técnicas para o desenvolvimento dessa solução, responda qual ferramenta acredita ser apropriada para o controle de tarefas da equipe, a ferramenta é ágil? 
+
+	Acredito que podemos utilizar a metodologia Scrum já que estaremos desenvolvendo uma nova solução, existem algumas ferramentas auxiliares que o implementam muito bem como os boards do Azure DevOps da Microsoft ou o Jira da Atlassian.
+
+3. Você se sente capaz de liderar esta equipe? Por quê? 
+
+	Me sinto capaz de liderar a equipe porque já atuei como liderança por mais de um ano e sempre tive feedbacks positivos, além do mais, sou muito responsável e busco sempre alinhar tecnicamente o negócio, ou seja, entregar dentro do prazo sem perder qualidade aplicando processos de dívida técnica, gestão do conhecimento e boa integração da equipe e da equipe com as equipes vizinhas (como Infraestrutura, Suporte ao cliente ou outras equipes de desenvolvimento).
+
+4. Se pudesse sugerir uma melhoria, mudança ou oportunidade. O que seria? 
+No momento não tenho nada a sugerir.
+
+5. Acha válido esse desafio para o processo que está participando?
+Acho válido sim, o desafio permite que desenvolvedores mais experientes possam aplicar padrões e conceitos não usuais para desenvolvedores menos experientes.
