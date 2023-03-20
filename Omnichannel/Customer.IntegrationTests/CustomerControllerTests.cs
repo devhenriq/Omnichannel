@@ -23,9 +23,10 @@ namespace Customers.IntegrationTests
         {
             //Arrange
             var request = new CreateCustomerRequest(
+                _faker.Random.String2(11),
                 _faker.Person.FullName,
-                new CompanyRequest(_faker.Random.String2(10), _faker.Random.String2(10)),
-                null,
+                _faker.Person.Email,
+                _faker.Phone.PhoneNumber("##########"),
                 new DeliveryAddressRequest(
                     _faker.Random.String2(5),
                     _faker.Random.String2(10),
@@ -36,9 +37,8 @@ namespace Customers.IntegrationTests
                     _faker.Random.String2(10),
                     _faker.Random.String2(10),
                     _faker.Random.String2(10)),
-                _faker.Phone.PhoneNumber("##########"),
-                _faker.Person.Email,
-                _faker.Random.String2(11)
+                null,
+                new CompanyRequest(_faker.Random.String2(10), _faker.Random.String2(10))
             );
             var customerServiceMock = new Mock<ICustomerService>();
             customerServiceMock.Setup(mock => mock.Create(request)).ReturnsAsync(Guid.NewGuid());
@@ -50,7 +50,7 @@ namespace Customers.IntegrationTests
             ).CreateClient();
 
             //Act
-            var response = await client.PostAsJsonAsync("/customer", request);
+            var response = await client.PostAsJsonAsync("/api/customers", request);
 
             //Assert
             response.StatusCode.Should().Be(HttpStatusCode.Created);
