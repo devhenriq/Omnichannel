@@ -11,9 +11,9 @@ namespace Customers.Domain.Aggregates.Customers
 
             var documentWithoutDigits = document.Substring(0, document.Length - 2);
 
-            var firstDigit = GetDigit(documentWithoutDigits, firstMultipliers, document.Length);
+            var firstDigit = GetDigit(documentWithoutDigits, firstMultipliers);
             documentWithoutDigits = documentWithoutDigits + firstDigit;
-            var digits = firstDigit + GetDigit(documentWithoutDigits, secondMultipliers, document.Length);
+            var digits = firstDigit + GetDigit(documentWithoutDigits, secondMultipliers);
 
             return document.EndsWith(digits);
 
@@ -25,14 +25,14 @@ namespace Customers.Domain.Aggregates.Customers
             return validateRegex.IsMatch(document);
         }
 
-        private string GetDigit(string numbers, int[] multipliers, int size)
+        private string GetDigit(string numbers, int[] multipliers)
         {
             var total = 0;
             for (int i = 0; i < multipliers.Length; i++)
                 total += int.Parse(numbers[i].ToString()) * multipliers[i];
 
-            var remainder = total % size;
-            return remainder < 2 ? "0" : (size - remainder).ToString();
+            var remainder = total % 11;
+            return remainder < 2 ? "0" : (11 - remainder).ToString();
         }
     }
 }
