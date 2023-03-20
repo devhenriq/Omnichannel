@@ -2,13 +2,13 @@
 {
     public class PersonRequest
     {
-        public PersonRequest(string gender, DateOnly birthDate)
+        public PersonRequest(string gender, DateTime birthDate)
         {
             Gender = gender;
             BirthDate = birthDate;
         }
 
         public string Gender { get; private set; }
-        public DateOnly BirthDate { get; private set; }
+        public DateTime BirthDate { get; private set; }
     }
 }
