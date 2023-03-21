@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using People.Domain.Aggregates;
 
 namespace Person.Api.Controllers
 {
@@ -6,15 +7,16 @@ namespace Person.Api.Controllers
     [Route("api/people")]
     public class PersonController : ControllerBase
     {
-
-        public PersonController()
+        private readonly IPersonRepository _personRepository;
+        public PersonController(IPersonRepository personRepository)
         {
+            _personRepository = personRepository;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Ok();
+            return Ok(_personRepository.GetAll());
         }
     }
 }

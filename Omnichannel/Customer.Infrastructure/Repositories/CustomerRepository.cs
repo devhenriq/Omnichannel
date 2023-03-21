@@ -1,6 +1,7 @@
 ﻿using Customers.Domain.Aggregates.Customers;
 using Customers.Infrastructure.Data;
 using Customers.Infrastructure.MessageClients;
+using Microsoft.EntityFrameworkCore;
 
 namespace Customers.Infrastructure.Repositories
 {
@@ -22,7 +23,12 @@ namespace Customers.Infrastructure.Repositories
 
         public Customer? Get(Guid id)
         {
-            return _context.Customers.FirstOrDefault(customer => customer.Id == id);
+            return _context.Customers
+                .Include(customer => customer.Document)
+                .Include(customer => customer.Email)
+                .Include(customer => customer.Phone)
+                .Include(customer => customer.DeliveryAddress)
+                .FirstOrDefault(customer => customer.Id == id);
         }
 
         public Customer? Get(string document, string email)
@@ -32,7 +38,12 @@ namespace Customers.Infrastructure.Repositories
 
         public IEnumerable<Customer> GetAll()
         {
-            return _context.Customers.ToList();
+            return _context.Customers
+                .Include(customer => customer.Document)
+                .Include(customer => customer.Email)
+                .Include(customer => customer.Phone)
+                .Include(customer => customer.DeliveryAddress)
+                .ToList();
         }
 
         public void CreatePersonalData(object message, string exchange)

@@ -6,13 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-	  <Folder Include="Entities\Strategies\" />
-	  <Folder Include="Services\" />
-	  <Folder Include="Repositories\" />
-	  <Folder Include="Responses\" />
-	  <Folder Include="Requests\" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    <ProjectReference Include="..\..\CrossCutting\CrossCutting.csproj" />
   </ItemGroup>
 </Project>
