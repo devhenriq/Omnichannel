@@ -13,7 +13,7 @@
 
         public bool Validate(string value)
         {
-            return Validate(value, _invalidCpfs, _firstMultipliers, _secondMultipliers);
+            return Validate(11, value, _invalidCpfs, _firstMultipliers, _secondMultipliers);
         }
     }
 }

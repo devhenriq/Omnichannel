@@ -13,7 +13,7 @@
 
         public bool Validate(string value)
         {
-            return Validate(value, _invalidCnpjs, _firstMultiplier, _secondMultiplier);
+            return Validate(14, value, _invalidCnpjs, _firstMultiplier, _secondMultiplier);
         }
     }
 }

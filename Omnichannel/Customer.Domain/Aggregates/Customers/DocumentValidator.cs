@@ -4,12 +4,12 @@ namespace Customers.Domain.Aggregates.Customers
 {
     public abstract class DocumentValidator
     {
-        protected bool Validate(string document, string[] invalidDocuments, int[] firstMultipliers, int[] secondMultipliers)
+        protected bool Validate(int expectedLength, string document, string[] invalidDocuments, int[] firstMultipliers, int[] secondMultipliers)
         {
-            if (!HasOnlyNumbers(document) || invalidDocuments.Contains(document))
+            if (expectedLength != document.Length || !HasOnlyNumbers(document) || invalidDocuments.Contains(document))
                 return false;
 
-            var documentWithoutDigits = document.Substring(0, document.Length - 2);
+            var documentWithoutDigits = document.Substring(0, expectedLength - 2);
 
             var firstDigit = GetDigit(documentWithoutDigits, firstMultipliers);
             documentWithoutDigits = documentWithoutDigits + firstDigit;
