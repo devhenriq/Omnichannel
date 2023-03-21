@@ -12,11 +12,13 @@ namespace Customers.Domain.Services
         private readonly ICustomerRepository _customerRepository;
         private readonly IAddressRepository _addressRepository;
         private readonly IPersonalDataCreatorFactory _personalDataCreatorFactory;
-        public CustomerService(ICustomerRepository customerRepository, IAddressRepository addressRepository, IPersonalDataCreatorFactory personalDataCreatorFactory)
+        private readonly ICustomerFactory _customerFactory;
+        public CustomerService(ICustomerRepository customerRepository, IAddressRepository addressRepository, IPersonalDataCreatorFactory personalDataCreatorFactory, ICustomerFactory customerFactory)
         {
             _customerRepository = customerRepository;
             _addressRepository = addressRepository;
             _personalDataCreatorFactory = personalDataCreatorFactory;
+            _customerFactory = customerFactory;
         }
 
         public Customer Get(Guid id)
@@ -40,7 +42,7 @@ namespace Customers.Domain.Services
             var address = await _addressRepository.GetAddressAsync(request.Address.ZipCode);
             address.SetAdditionalInformation(request.Address.Number, request.Address.Identifier, request.Address.Complement, request.Address.Reference);
 
-            customer = new Customer(request.Email, request.Name, request.Phone, address);
+            customer = _customerFactory.Create(request, address);
             var personalDataCreator = _personalDataCreatorFactory.Create(request.Document);
             var documentValidator = personalDataCreator.Create(_customerRepository, request, customer.Id);
             customer.SetDocument(new Document(request.Document, documentValidator));

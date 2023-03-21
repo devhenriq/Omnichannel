@@ -14,6 +14,7 @@ namespace Customers.Domain
         {
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IPersonalDataCreatorFactory, PersonalDataCreatorFactory>();
+            services.AddScoped<ICustomerFactory, CustomerFactory>();
         }
         public static void UseDomain(this IApplicationBuilder app, ILogger logger)
         {
