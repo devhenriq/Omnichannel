@@ -1,4 +1,5 @@
 ﻿using Customers.Domain.Aggregates.Customers;
+using System.Text.Json.Serialization;
 
 namespace Customers.Domain.Aggregates.Addresses
 {
@@ -23,6 +24,7 @@ namespace Customers.Domain.Aggregates.Addresses
         public string Identification { get; private set; } = "";
         public string Complement { get; private set; } = "";
         public string Reference { get; private set; } = "";
+        [JsonIgnore]
         public IEnumerable<Customer> Customers { get; private set; } = new List<Customer>();
         public void SetAdditionalInformation(string number, string identification, string complement, string reference)
         {

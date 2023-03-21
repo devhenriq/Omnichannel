@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Customers.Api.Controllers
 {
-    public class AddressController : Controller
+    [ApiController]
+    [Route("api/addresses")]
+    public class AddressController : ControllerBase
     {
         private readonly IAddressRepository _addressRepository;
 
