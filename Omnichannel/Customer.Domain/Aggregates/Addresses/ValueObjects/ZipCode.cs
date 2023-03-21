@@ -16,7 +16,7 @@ namespace Customers.Domain.Aggregates.Addresses.ValueObjects
 
         private bool IsValid(string value)
         {
-            var validateRegex = new Regex(@"^(\\d{8})$", RegexOptions.Compiled);
+            var validateRegex = new Regex(@"^\d{8}$", RegexOptions.Compiled);
             return validateRegex.IsMatch(value);
         }
 
