@@ -1,0 +1,449 @@
+{
+	"info": {
+		"_postman_id": "c0f27aae-9fd1-4043-9cc1-30f22ba8a1bc",
+		"name": "Omnichannel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7629842"
+	},
+	"item": [
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8011/api/customers",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8011",
+							"path": [
+								"api",
+								"customers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get empty",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8081/api/customers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"customers"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Mar 2023 02:24:07 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "[]"
+						}
+					]
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8011/api/customers/352a87c3-6392-4af8-8a8c-9eeb545d9f2d",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8011",
+							"path": [
+								"api",
+								"customers",
+								"352a87c3-6392-4af8-8a8c-9eeb545d9f2d"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Customer not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8081/api/customers/2b5b1e32-8f8f-44fe-9ec6-289b6a7369d8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"api",
+										"customers",
+										"2b5b1e32-8f8f-44fe-9ec6-289b6a7369d8"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Mar 2023 02:25:07 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache,no-store"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "customer not found."
+						}
+					]
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"string\",\r\n  \"document\": \"12345678901234\",\r\n  \"company\": {\r\n    \"socialReason\": \"string\",\r\n    \"stateSubscription\": \"string\"\r\n  },\r\n  \"person\": {\r\n    \"gender\": \"string\"\r\n  },\r\n  \"address\": {\r\n    \"identifier\": \"string\",\r\n    \"zipCode\": \"90570-001\",\r\n    \"address\": \"string\",\r\n    \"number\": \"string\",\r\n    \"neighbourhood\": \"string\",\r\n    \"complement\": \"string\",\r\n    \"city\": \"string\",\r\n    \"state\": \"string\",\r\n    \"reference\": \"string\"\r\n  },\r\n  \"phone\": \"51998619875\",\r\n  \"email\": \"schmitthenriq222@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8011/api/customers",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8011",
+							"path": [
+								"api",
+								"customers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"string\",\r\n  \"document\": \"12345678901234\",\r\n  \"company\": {\r\n    \"socialReason\": \"string\",\r\n    \"stateSubscription\": \"string\"\r\n  },\r\n  \"person\": {\r\n    \"gender\": \"string\"\r\n  },\r\n  \"address\": {\r\n    \"identifier\": \"string\",\r\n    \"zipCode\": \"90570-001\",\r\n    \"address\": \"string\",\r\n    \"number\": \"string\",\r\n    \"neighbourhood\": \"string\",\r\n    \"complement\": \"string\",\r\n    \"city\": \"string\",\r\n    \"state\": \"string\",\r\n    \"reference\": \"string\"\r\n  },\r\n  \"phone\": \"51998619875\",\r\n  \"email\": \"schmitthenriq222@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8011/api/customers",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8011",
+									"path": [
+										"api",
+										"customers"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 21 Mar 2023 03:24:07 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache,no-store"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "Invalid input on Customer creation. Customer already registered"
+						}
+					]
+				},
+				{
+					"name": "Get Address",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8011/api/addresses/90570000",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8011",
+							"path": [
+								"api",
+								"addresses",
+								"90570000"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Address",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8011/api/addresses/90570000",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8011",
+									"path": [
+										"api",
+										"addresses",
+										"90570000"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 21 Mar 2023 03:40:09 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"7c913525-d6c8-4b55-924c-e74769342bcc\",\n    \"zipCode\": \"90570-000\",\n    \"city\": \"Porto Alegre\",\n    \"state\": \"RS\",\n    \"street\": \"Rua Félix da Cunha\",\n    \"neighbourhood\": \"Floresta\",\n    \"number\": \"\",\n    \"identification\": \"\",\n    \"complement\": \"\",\n    \"reference\": \"\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Companies",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8021/api/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8021",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8021/api/companies",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8021",
+									"path": [
+										"api",
+										"companies"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 21 Mar 2023 03:23:48 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "[]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "People",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8001/api/people",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"api",
+								"people"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8001/api/people",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"api",
+										"people"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 21 Mar 2023 03:23:49 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"bf8b49e2-4a36-497d-b2f8-d7f78692f021\",\n        \"customerId\": \"5cabb63f-4241-497d-a479-fedc529bac60\",\n        \"birthDate\": \"0001-01-01T00:00:00\",\n        \"gender\": \"string\"\n    }\n]"
+						}
+					]
+				}
+			]
+		}
+	]
+}
