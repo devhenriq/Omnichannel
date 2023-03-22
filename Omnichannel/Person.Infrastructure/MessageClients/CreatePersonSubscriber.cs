@@ -26,10 +26,10 @@ namespace People.Infrastructure.MessageClients
                 Password = configuration["RabbitMq:Password"]
             }.CreateConnection();
             _channel = connection.CreateModel();
-            _channel.ExchangeDeclare(MessageQueues.CreatePerson, ExchangeType.Fanout);
+            _channel.ExchangeDeclare(MessageExchanges.CreatePerson, ExchangeType.Fanout);
 
             _queueName = _channel.QueueDeclare().QueueName;
-            _channel.QueueBind(_queueName, MessageQueues.CreatePerson, string.Empty);
+            _channel.QueueBind(_queueName, MessageExchanges.CreatePerson, string.Empty);
             _services = services;
         }
 

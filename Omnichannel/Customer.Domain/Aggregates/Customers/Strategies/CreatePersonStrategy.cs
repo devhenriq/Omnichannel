@@ -8,7 +8,7 @@ namespace Customers.Domain.Aggregates.Customers.Strategies
     {
         public IDocumentValidator Create(ICustomerRepository repository, CreateCustomerRequest request, Guid customerId)
         {
-            repository.CreatePersonalData(new CreatePersonMessage(customerId, request.Person.Gender, request.Person.BirthDate), MessageQueues.CreatePerson);
+            repository.CreatePersonalData(new CreatePersonMessage(customerId, request.Person.Gender, request.Person.BirthDate), MessageExchanges.CreatePerson);
             return new CpfValidatorStrategy();
         }
     }

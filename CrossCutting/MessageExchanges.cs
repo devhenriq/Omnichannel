@@ -1,6 +1,6 @@
 ﻿namespace CrossCutting
 {
-    public static class MessageQueues
+    public static class MessageExchanges
     {
         public const string CreateCompany = "CreateCompany";
         public const string CreatePerson = "CreatePerson";
