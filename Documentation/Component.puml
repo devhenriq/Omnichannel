@@ -1,0 +1,54 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_LANDSCAPE()
+
+title Diagrama de componente do omnichannel - Customer Api
+
+AddRelTag("async", $lineStyle= DashedLine())
+Boundary(digitalChannels, "Canais digitais"){
+    System_Ext(landingPages, "Landing pages", "Páginas de marketing com objetivo de captar clientes")
+    System_Ext(portal, "Portal Fintech", "Portal da fintech que disponibiliza diversas funcionalidades para seus usuários")
+}
+
+System_Boundary(omnichannel, "Omnichannel", "Sistema de gerenciamento de contas e dados de clientes"){
+    Boundary(customerApi, "CustomerApi", "ASP NET 7", "API de gerenciamento de dados de clientes"){
+        Container(customerController, "CustomerController", "","Gerencia dados de clientes")
+        Container(addressController, "AddressController","", "Fornece dados de endereço com base no CEP")
+
+        Container(customerService, "CustomerService", "", "Serviço responsável pelas regras de criação e busca de clientes")
+        Container(customerFactory, "CustomerFactory", "", "Criação de clientes")
+        Container(personalDataFactory, "PersonalDataFactory", "", "Criação de dados pessoais de clientes")
+
+        Container(customerRepository, "CustomerRepository", "", "Criação e busca de dados de clientes")
+        Container(addressRepository, "AddressRepository", "", "Criação e busca de dados de endereço")
+    }
+    ContainerDb(redis, "Redis", "Cache distribuído", "Armazena dados temporários de rápido acesso")
+    ContainerDb(customerDb, "CustomerDb", "SQL Database")
+    ContainerQueue(rabbit, "Gerenciador de filas de mensagens", "RabbitMQ")
+}
+
+Rel(digitalChannels, customerController, "Realiza chamada para a API", "JSON/HTTPS")
+Rel(digitalChannels, addressController, "Realiza chamada para a API", "JSON/HTTPS")
+
+System_Ext(viaCep, "ViaCEP", "Serviço de consulta de CEP")
+Rel(customerController, customerService, "")
+Rel(customerService, customerRepository, "Busca e salva dados de clientes")
+Rel(customerService, customerFactory, "Cria clientes")
+
+Rel(customerFactory, addressRepository, "Busca dados de endereço")
+Rel(customerFactory, personalDataFactory, "Cria mensagens de cadastro de pessoas físicas e jurídicas")
+
+Rel(personalDataFactory, customerRepository, "Envia mensagens de cadastro de pessoas físicas e jurídicas")
+
+Rel(addressController, addressRepository, "Busca dados de endereço")
+
+Rel(addressRepository, viaCep, "Busca dados de endereço")
+Rel(addressRepository, redis, "Busca e salva dados de endereço")
+
+Rel(customerRepository, rabbit, "Enviar mensagens de cadastro de pessoas físicas e jurídicas", $tags = "async")
+Rel(customerRepository, customerDb, "Armazena e busca dados de clientes")
+
+
+@enduml

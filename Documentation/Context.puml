@@ -1,0 +1,30 @@
+@startuml context
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Diagrama de contexto Omnichannel
+
+Person(customer, "Cliente")
+
+Boundary(digitalChannels, "Canais digitais"){
+    System_Ext(landingPages, "Landing pages", "Páginas de marketing com objetivo de captar clientes")
+    System_Ext(portal, "Portal Fintech", "Portal da fintech que disponibiliza diversas funcionalidades para seus usuários")
+}
+
+Boundary(systemBoundary, "Sistema"){
+    System(omnichannel, "Omnichannel", "Sistema de gerenciamento de contas e dados de clientes")
+    System_Ext(viaCep, "ViaCEP", "Serviço de consulta de CEP")
+    System_Ext(emailProvider, "Email", "Serviço de envio de email")
+    System_Ext(pushNotificationProvider, "Notification", "Serviço de envio de notificações push")
+}
+
+Rel(landingPages, omnichannel, "Cadastra cliente")
+Rel(portal, omnichannel, "Cadastra cliente")
+
+Rel(omnichannel, viaCep, "Busca dados de endereço")
+Rel(omnichannel, emailProvider, "Enviar email")
+Rel(omnichannel, pushNotificationProvider, "Enviar notificações push")
+
+Rel(emailProvider, customer, "Recebe email")
+Rel(pushNotificationProvider, customer, "Recebe notificações push")
+@enduml

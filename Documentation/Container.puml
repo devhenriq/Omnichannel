@@ -1,0 +1,51 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+LAYOUT_LANDSCAPE()
+title Diagrama de conteineres Omnichannel
+
+AddRelTag("async", $lineStyle= DashedLine())
+
+Person(customer, "Cliente")
+
+Boundary(digitalChannels, "Canais digitais"){
+    System_Ext(landingPages, "Landing pages", "Páginas de marketing com objetivo de captar clientes")
+    System_Ext(portal, "Portal Fintech", "Portal da fintech que disponibiliza diversas funcionalidades para seus usuários")
+}
+
+Boundary(systemBoundary, "Sistema"){
+    System_Boundary(omnichannel, "Omnichannel", "Sistema de gerenciamento de contas e dados de clientes"){
+        Container(customerApi, "CustomerApi", "ASP NET 7", "API de gerenciamento de dados de clientes")
+        Container(personApi,"PersonApi", "ASP NET 7", "API de gerenciamento de dados de pessoas físicas")
+        Container(companyApi, "CompanyApi", "ASP NET 7", "API de gerenciamento de dados de pessoas jurídicas")
+        ContainerDb(customerDb, "CustomerDb", "SQL Database")
+        ContainerDb(personDb, "PersonDb", "SQL Database")
+        ContainerDb(companyDb, "CompanyDb", "SQL Database")
+        ContainerDb(redis, "Redis", "Cache distribuído", "Armazena dados temporários de rápido acesso")
+        ContainerQueue(rabbit, "Gerenciador de filas de mensagens", "RabbitMQ")
+    }
+
+    
+    System_Ext(viaCep, "ViaCEP", "Serviço de consulta de CEP")
+    System_Ext(emailProvider, "Email", "Serviço de envio de email")
+    System_Ext(pushNotificationProvider, "Notification", "Serviço de envio de notificações push")
+}
+
+Rel(landingPages, customerApi, "Cadastra cliente")
+Rel(portal, customerApi, "Cadastra cliente")
+
+Rel(customerApi, viaCep, "Busca dados de endereço")
+Rel(customerApi, emailProvider, "Enviar email")
+Rel(customerApi, pushNotificationProvider, "Enviar notificações push")
+Rel(customerApi, redis, "Busca e salva dados de endereço")
+Rel(customerApi, rabbit, "Enviar mensagens de cadastro de pessoas físicas e jurídicas", $tags = "async")
+Rel(customerApi, customerDb, "Armazena e busca dados de clientes")
+
+Rel(rabbit, personApi, "Lê mensagens de cadastro de pessoas físicas", $tags = "async")
+Rel(personApi, personDb, "Armazena e busca dados de pessoas físicas")
+
+Rel(rabbit, companyApi, "Lê mensagens de cadastro de pessoas jurídicas", $tags = "async")
+Rel(companyApi, companyDb, "Armazena e busca dados de pessoas jurídicas")
+
+Rel(emailProvider, customer, "Recebe email")
+Rel(pushNotificationProvider, customer, "Recebe notificações push")
+@enduml
