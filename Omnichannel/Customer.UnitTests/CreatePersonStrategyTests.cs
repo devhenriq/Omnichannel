@@ -1,4 +1,5 @@
-﻿using Customers.Domain.Aggregates.Customers;
+﻿using Bogus.Extensions.Brazil;
+using Customers.Domain.Aggregates.Customers;
 using Customers.Domain.Aggregates.Customers.Strategies;
 using Customers.UnitTests.Factories;
 
@@ -14,7 +15,7 @@ namespace Customers.UnitTests
             var customerRepositoryMock = new Mock<ICustomerRepository>();
             //Act
 
-            var validator = createPersonStrategy.Create(customerRepositoryMock.Object, CustomerMockFactory.CreateCustomerRequestMock("70612674029"), Guid.NewGuid());
+            var validator = createPersonStrategy.Create(customerRepositoryMock.Object, CustomerMockFactory.CreateCustomerRequestMock(_faker.Person.Cpf(false)), Guid.NewGuid());
             //Assert
             validator.Should().BeOfType<CpfValidatorStrategy>();
         }

@@ -7,7 +7,7 @@ namespace Customers.UnitTests
         protected readonly Faker _faker;
         public UnitTest()
         {
-            _faker = new Faker();
+            _faker = new Faker("pt_BR");
         }
     }
 }

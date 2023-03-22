@@ -1,4 +1,5 @@
-﻿using CrossCutting.Exceptions;
+﻿using Bogus.Extensions.Brazil;
+using CrossCutting.Exceptions;
 using Customers.Domain.Aggregates.Customers.Strategies;
 using Customers.Domain.Aggregates.Customers.ValueObjects;
 
@@ -10,7 +11,7 @@ namespace Customers.UnitTests
         public void ValidCpfShouldSetValue()
         {
             //Arrange
-            var cpf = "76809771000";
+            var cpf = _faker.Person.Cpf(false);
             var cpfValidator = new CpfValidatorStrategy();
 
             //Act

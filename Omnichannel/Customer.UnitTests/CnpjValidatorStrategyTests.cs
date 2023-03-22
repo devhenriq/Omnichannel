@@ -1,20 +1,17 @@
-﻿using Customers.Domain.Aggregates.Customers.Strategies;
+﻿using Bogus.Extensions.Brazil;
+using Customers.Domain.Aggregates.Customers.Strategies;
 
 namespace Customers.UnitTests
 {
     public class CnpjValidatorStrategyTests : UnitTest
     {
-        [Theory(DisplayName = "Valid CNPJ Validation should return true")]
-        [InlineData("95775776000190")]
-        [InlineData("77031787000183")]
-        [InlineData("95914411000107")]
-        [InlineData("84752078000152")]
-        public void ValidCnpjValidationShouldReturnTrue(string cnpj)
+        [Fact(DisplayName = "Valid CNPJ Validation should return true")]
+        public void ValidCnpjValidationShouldReturnTrue()
         {
             //Arrange
             var cnpjValidator = new CnpjValidatorStrategy();
             //Act
-            var isValid = cnpjValidator.Validate(cnpj);
+            var isValid = cnpjValidator.Validate(_faker.Company.Cnpj(false));
 
             //Assert
             isValid.Should().BeTrue();

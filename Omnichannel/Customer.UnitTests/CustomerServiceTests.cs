@@ -1,4 +1,5 @@
-﻿using CrossCutting.Exceptions;
+﻿using Bogus.Extensions.Brazil;
+using CrossCutting.Exceptions;
 using Customers.Domain.Aggregates.Addresses;
 using Customers.Domain.Aggregates.Customers;
 using Customers.Domain.Aggregates.Customers.Factories;
@@ -99,8 +100,9 @@ namespace Customers.UnitTests
         public async Task CreateCustomerShouldCallCustomerRepositoryGetMethodAsync()
         {
             //Arrange
+
             var expectedCustomer = CustomerMockFactory.CreateCustomerMock(_faker.Person.Email);
-            expectedCustomer.SetDocument(new Document("70612674029", new CpfValidatorStrategy()));
+            expectedCustomer.SetDocument(new Document(_faker.Person.Cpf(false), new CpfValidatorStrategy()));
             var document = expectedCustomer.Document?.Value ?? string.Empty;
             var email = expectedCustomer.Email?.Value ?? string.Empty;
 
@@ -132,7 +134,7 @@ namespace Customers.UnitTests
         public async Task CreateCustomerShouldCallAddressRepositoryGetAddressAsyncMethodAsync()
         {
             var expectedCustomer = CustomerMockFactory.CreateCustomerMock(_faker.Person.Email);
-            expectedCustomer.SetDocument(new Document("70612674029", new CpfValidatorStrategy()));
+            expectedCustomer.SetDocument(new Document(_faker.Person.Cpf(false), new CpfValidatorStrategy()));
             var document = expectedCustomer.Document?.Value ?? string.Empty;
             var email = expectedCustomer.Email?.Value ?? string.Empty;
 
@@ -164,7 +166,7 @@ namespace Customers.UnitTests
         public async Task CreateCustomerShouldCallPersonalDataCreatorFactoryMethodAsync()
         {
             var expectedCustomer = CustomerMockFactory.CreateCustomerMock(_faker.Person.Email);
-            expectedCustomer.SetDocument(new Document("70612674029", new CpfValidatorStrategy()));
+            expectedCustomer.SetDocument(new Document(_faker.Person.Cpf(false), new CpfValidatorStrategy()));
             var document = expectedCustomer.Document?.Value ?? string.Empty;
             var email = expectedCustomer.Email?.Value ?? string.Empty;
 
@@ -196,7 +198,7 @@ namespace Customers.UnitTests
         public async Task CreateCustomerShouldCallCustomerRepositoryCreateAsyncMethodAsync()
         {
             var expectedCustomer = CustomerMockFactory.CreateCustomerMock(_faker.Person.Email);
-            expectedCustomer.SetDocument(new Document("70612674029", new CpfValidatorStrategy()));
+            expectedCustomer.SetDocument(new Document(_faker.Person.Cpf(false), new CpfValidatorStrategy()));
             var document = expectedCustomer.Document?.Value ?? string.Empty;
             var email = expectedCustomer.Email?.Value ?? string.Empty;
 
@@ -228,7 +230,7 @@ namespace Customers.UnitTests
         public async Task CreateCustomerShouldReturnCustomerIdAsync()
         {
             var expectedCustomer = CustomerMockFactory.CreateCustomerMock(_faker.Person.Email);
-            expectedCustomer.SetDocument(new Document("70612674029", new CpfValidatorStrategy()));
+            expectedCustomer.SetDocument(new Document(_faker.Person.Cpf(false), new CpfValidatorStrategy()));
             var document = expectedCustomer.Document?.Value ?? string.Empty;
             var email = expectedCustomer.Email?.Value ?? string.Empty;
 

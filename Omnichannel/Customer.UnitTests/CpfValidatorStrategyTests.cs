@@ -1,20 +1,17 @@
-﻿using Customers.Domain.Aggregates.Customers.Strategies;
+﻿using Bogus.Extensions.Brazil;
+using Customers.Domain.Aggregates.Customers.Strategies;
 
 namespace Customers.UnitTests
 {
     public class CpfValidatorStrategyTests : UnitTest
     {
-        [Theory(DisplayName = "Valid CPF Validation should return true")]
-        [InlineData("70612674029")]
-        [InlineData("68955458088")]
-        [InlineData("64328164082")]
-        [InlineData("76809771000")]
-        public void ValidCpfValidationShouldReturnTrue(string cpf)
+        [Fact(DisplayName = "Valid CPF Validation should return true")]
+        public void ValidCpfValidationShouldReturnTrue()
         {
             //Arrange
             var cpfValidator = new CpfValidatorStrategy();
             //Act
-            var isValid = cpfValidator.Validate(cpf);
+            var isValid = cpfValidator.Validate(_faker.Person.Cpf(false));
 
             //Assert
             isValid.Should().BeTrue();
