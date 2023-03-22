@@ -2,7 +2,7 @@
 
 Este sistema foi desenvolvido seguindo princípios de microserviços, utilizando mensageria e cache distribuído.
 
-** Como executar o projeto por linha de comando **
+**Como executar o projeto por linha de comando**
 + O projeto foi configurado para ser executado apenas clicando no botão verde do Visual Studio Community 2022.
 + Para executar os testes de unidade, o usuário pode utilizar o Test Explorer do Visual Studio Community 2022.
 + O sistema utiliza containêres para montar seu ambiente, então o mais recomendado é utilizar a estrutura já pronta que se encontra na pasta `3 - Container Orchestration`.
@@ -19,9 +19,6 @@ No projeto há a disposição um JSON referente a uma collection de postman e ca
 
 ------------
 ## Documentação
-
-### Diagramas
-
 ##### Diagrama de contexto
 ![Context](https://github.com/devhenriq/Omnichannel/blob/master/Documentation/Context.png "Context")
 
