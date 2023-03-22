@@ -15,7 +15,7 @@ Comando:
 **Interface de utilização**
 
 No projeto há a disposição um JSON referente a uma collection de postman e cada api do projeto também contém swagger configurado.
-+ Arquivo  [Omnichannel Collection](https://github.com/devhenriq/Omnichannel/blob/master/Omnichannel.postman_collection.json "Omnichannel Collection")
++ Arquivo Postman: [Omnichannel Collection](https://github.com/devhenriq/Omnichannel/blob/master/Omnichannel.postman_collection.json "Omnichannel Collection")
 
 ------------
 ## Documentação
