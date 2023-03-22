@@ -13,7 +13,7 @@ namespace Customers.Domain
         public static void AddDomain(this IServiceCollection services)
         {
             services.AddScoped<ICustomerService, CustomerService>();
-            services.AddScoped<IPersonalDataCreatorFactory, PersonalDataCreatorFactory>();
+            services.AddScoped<IPersonalDataFactory, PersonalDataFactory>();
             services.AddScoped<ICustomerFactory, CustomerFactory>();
         }
         public static void UseDomain(this IApplicationBuilder app, ILogger logger)
