@@ -31,6 +31,8 @@ No projeto há a disposição um JSON referente a uma collection de postman e ca
 ------------
 
 ## Informações adicionais:
-* Feito utilizando .NET 7.
+* Utiliza .NET 7.
 * XUnit utilizado como framework de testes.
 * Swagger configurado.
+* Utiliza Redis.
+* Utiliza PostgreSQL.
